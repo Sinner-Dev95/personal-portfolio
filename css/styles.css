@@ -15,9 +15,15 @@ body {
 
 /*== HEADER==*/
 .header {
+  display: flex; /* ✅ AGGIUNGI */
+  justify-content: space-between; /* ✅ AGGIUNGI */
+  align-items: center; /* ✅ AGGIUNGI */
   padding: 1rem 2rem;
   border-bottom: 1px solid #e2e8f0;
   background: white;
+  position: sticky; /* ✅ AGGIUNGI */
+  top: 0; /* ✅ AGGIUNGI */
+  z-index: 100; /* ✅ AGGIUNGI */
 }
 
 .title {
@@ -37,6 +43,80 @@ body {
   font-weight: 600;
   color: #2d3748;
 }
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.hamburger-icon:hover .hamburger-stripe {
+  background-color: #0891b2;
+  transition: background-color 0.3s ease;
+}
+
+.hamburger-stripe {
+  width: 30px;
+  height: 3px;
+  background-color: #2d3748;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.hamburger-icon.active .hamburger-stripe:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger-icon.active .hamburger-stripe:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.active .hamburger-stripe:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.menu-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 999;
+}
+
+.menu-container.show {
+  display: block;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 1rem 2rem;
+  margin: 0;
+}
+
+.menu-list-item {
+  margin: 1rem 0;
+}
+.menu-list-link {
+  text-decoration: none;
+  color: #2d3748;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.menu-list-link:hover {
+  color: #0891b2;
+  transition: color 0.3s ease;
+}
+
 /*== HERO SECTION ==*/
 .hero-section {
   min-height: 90vh;
@@ -73,6 +153,11 @@ body {
   font-weight: 600;
   cursor: pointer;
 }
+.call-to-action:hover {
+  background: #0e7490;
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
 
 /*== ABOUT ==*/
 .about {
@@ -103,4 +188,33 @@ body {
   height: 150px;
   object-fit: cover;
   margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .hamburger-icon {
+    display: none; /* Nasconde hamburger su desktop */
+  }
+
+  .menu-container {
+    display: block;
+    position: static;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .menu-list {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: end;
+    padding: 0;
+  }
+  .menu-list-link:hover {
+    background: #f0f9ff;
+    color: #0891b2;
+    background: #bfdbfe;
+    color: #0891b2;
+    border-radius: 6px;
+  }
 }
